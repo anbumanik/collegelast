@@ -59,8 +59,10 @@ export default function Masonry({
       const minHeightColumn = columnHeights.indexOf(Math.min(...columnHeights));
       const x = (minHeightColumn / columns) * 100;
       const y = columnHeights[minHeightColumn];
-      columnHeights[minHeightColumn] += item.height;
-      return { ...item, x, y, width: 100 / columns };
+      // Scale height for mobile (2 columns) vs desktop (3-4 columns)
+      const scaledHeight = columns === 2 ? item.height * 0.6 : item.height;
+      columnHeights[minHeightColumn] += scaledHeight;
+      return { ...item, x, y, width: 100 / columns, scaledHeight };
     });
   }, [items, columns]);
 
@@ -120,7 +122,7 @@ export default function Masonry({
               transition-all duration-700 ease-out
             `}
             style={{ 
-              height: item.height - 32,
+              height: (item as any).scaledHeight - (columns === 2 ? 16 : 32),
               transform: scaleOnHover ? `scale(1)` : undefined 
             }}
             onMouseEnter={(e) => {

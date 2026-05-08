@@ -102,7 +102,7 @@ export default function Hero() {
             className="flex items-center gap-2 md:gap-4 mb-2"
           >
             <div className="h-[1px] w-8 md:w-12 bg-gradient-to-r from-transparent to-royal-gold" />
-            <span className="text-royal-gold font-serif italic tracking-[0.2em] md:tracking-[0.3em] text-[8px] md:text-base uppercase">Elegance in Every Chapter</span>
+            <span className="text-royal-gold font-serif italic tracking-[0.15em] md:tracking-[0.3em] text-[7px] min-[380px]:text-[10px] md:text-base uppercase text-nowrap">Elegance in Every Chapter</span>
             <div className="h-[1px] w-8 md:w-12 bg-gradient-to-l from-transparent to-royal-gold" />
           </motion.div>
 
@@ -116,7 +116,7 @@ export default function Hero() {
                 transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] } 
               }
             }}
-            className="text-5xl sm:text-7xl md:text-9xl font-royal font-black tracking-[0.05em] md:tracking-[0.1em] mb-2 royal-text drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]"
+            className="text-4xl min-[380px]:text-5xl sm:text-7xl md:text-9xl font-royal font-black tracking-[0.05em] md:tracking-[0.1em] mb-2 royal-text drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]"
           >
             THE END
           </motion.h1>
@@ -128,7 +128,7 @@ export default function Hero() {
                 visible: { opacity: 1, letterSpacing: "0.2em", transition: { duration: 1.5 } }
               }}
               whileInView={{ letterSpacing: "0.4em" }}
-              className="text-lg sm:text-2xl md:text-4xl font-serif text-white tracking-[0.2em] md:tracking-[0.4em] uppercase font-light"
+              className="text-sm min-[380px]:text-base sm:text-2xl md:text-4xl font-serif text-white tracking-[0.15em] md:tracking-[0.4em] uppercase font-light"
             >
               BATCH-2024-26
             </motion.h2>
@@ -159,10 +159,10 @@ export default function Hero() {
             }}
             className="space-y-2 md:space-y-4"
           >
-            <p className="text-lg sm:text-2xl md:text-4xl text-white/90 font-serif tracking-[0.1em] md:tracking-[0.2em] uppercase font-bold max-w-[300px] md:max-w-3xl mx-auto leading-tight md:leading-relaxed">
+            <p className="text-xs min-[380px]:text-sm sm:text-2xl md:text-4xl text-white/90 font-serif tracking-[0.1em] md:tracking-[0.2em] uppercase font-bold max-w-[280px] min-[380px]:max-w-[320px] md:max-w-3xl mx-auto leading-tight md:leading-relaxed">
               BHARATHIAR UNIVERSITY
               <br />
-              <span className="text-xs sm:text-lg md:text-2xl tracking-[0.3em] md:tracking-[0.6em] text-royal-gold font-medium">COIMBATORE</span>
+              <span className="text-[10px] min-[380px]:text-xs sm:text-lg md:text-2xl tracking-[0.2em] min-[380px]:tracking-[0.3em] md:tracking-[0.6em] text-royal-gold font-medium">COIMBATORE</span>
             </p>
           </motion.div>
 
