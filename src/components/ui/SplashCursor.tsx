@@ -174,13 +174,13 @@ const SplashCursor = ({
       fragmentShaderSource: any;
       programs: any[];
       activeProgram: any;
-      uniforms: any[];
+      uniforms: any;
       constructor(vertexShader: any, fragmentShaderSource: any) {
         this.vertexShader = vertexShader;
         this.fragmentShaderSource = fragmentShaderSource;
         this.programs = [];
         this.activeProgram = null;
-        this.uniforms = [];
+        this.uniforms = {};
       }
       setKeywords(keywords: any) {
         let hash = 0;
@@ -223,7 +223,7 @@ const SplashCursor = ({
     }
 
     function getUniforms(program: any) {
-      const uniforms: any = [];
+      const uniforms: any = {};
       const uniformCount = gl.getProgramParameter(program, gl.ACTIVE_UNIFORMS);
       for (let i = 0; i < uniformCount; i++) {
         const uniformName = gl.getActiveUniform(program, i).name;
@@ -476,7 +476,7 @@ const SplashCursor = ({
 
         void main () {
             float L = texture2D(uCurl, vL).x;
-            float R = texture2D(uCurl, v.x);
+            float R = texture2D(uCurl, vR).x;
             float T = texture2D(uCurl, vT).x;
             float B = texture2D(uCurl, vB).x;
             float C = texture2D(uCurl, vUv).x;
@@ -873,7 +873,7 @@ const SplashCursor = ({
     function splat(x: number, y: number, dx: number, dy: number, color: any) {
       splatProgram.bind();
       gl.uniform1i(splatProgram.uniforms.uTarget, velocity.read.attach(0));
-      gl.uniform1f(splatProgram.uniforms.aspectRatio, canvas.width / canvas.height);
+      gl.uniform1f(splatProgram.uniforms.aspectRatio, canvas!.width / canvas!.height);
       gl.uniform2f(splatProgram.uniforms.point, x, y);
       gl.uniform3f(splatProgram.uniforms.color, dx, dy, 0.0);
       gl.uniform1f(splatProgram.uniforms.radius, correctRadius(config.SPLAT_RADIUS / 100.0));
@@ -887,7 +887,7 @@ const SplashCursor = ({
     }
 
     function correctRadius(radius: number) {
-      const aspectRatio = canvas.width / canvas.height;
+      const aspectRatio = canvas!.width / canvas!.height;
       if (aspectRatio > 1) radius *= aspectRatio;
       return radius;
     }
@@ -896,8 +896,8 @@ const SplashCursor = ({
       pointer.id = id;
       pointer.down = true;
       pointer.moved = false;
-      pointer.texcoordX = posX / canvas.width;
-      pointer.texcoordY = 1.0 - posY / canvas.height;
+      pointer.texcoordX = posX / canvas!.width;
+      pointer.texcoordY = 1.0 - posY / canvas!.height;
       pointer.prevTexcoordX = pointer.texcoordX;
       pointer.prevTexcoordY = pointer.texcoordY;
       pointer.deltaX = 0;
@@ -908,8 +908,8 @@ const SplashCursor = ({
     function updatePointerMoveData(pointer: any, posX: number, posY: number, color: any) {
       pointer.prevTexcoordX = pointer.texcoordX;
       pointer.prevTexcoordY = pointer.texcoordY;
-      pointer.texcoordX = posX / canvas.width;
-      pointer.texcoordY = 1.0 - posY / canvas.height;
+      pointer.texcoordX = posX / canvas!.width;
+      pointer.texcoordY = 1.0 - posY / canvas!.height;
       pointer.deltaX = correctDeltaX(pointer.texcoordX - pointer.prevTexcoordX);
       pointer.deltaY = correctDeltaY(pointer.texcoordY - pointer.prevTexcoordY);
       pointer.moved = Math.abs(pointer.deltaX) > 0 || Math.abs(pointer.deltaY) > 0;
@@ -921,13 +921,13 @@ const SplashCursor = ({
     }
 
     function correctDeltaX(delta: number) {
-      const aspectRatio = canvas.width / canvas.height;
+      const aspectRatio = canvas!.width / canvas!.height;
       if (aspectRatio < 1) delta *= aspectRatio;
       return delta;
     }
 
     function correctDeltaY(delta: number) {
-      const aspectRatio = canvas.width / canvas.height;
+      const aspectRatio = canvas!.width / canvas!.height;
       if (aspectRatio > 1) delta /= aspectRatio;
       return delta;
     }
